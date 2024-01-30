@@ -9,9 +9,7 @@ int main()
     PersonalBudget personalBudget;
 
     personalBudget.registerUser();
-    personalBudget.registerUser();
-    personalBudget.registerUser();
-
     personalBudget.showUsers();
+
     return 0;
 }

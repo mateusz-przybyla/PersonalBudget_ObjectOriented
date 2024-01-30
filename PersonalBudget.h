@@ -4,28 +4,16 @@
 #include <iostream>
 #include <vector>
 
-#include "Markup.h"
-#include "User.h"
+#include "UserManager.h"
 
 using namespace std;
 
 class PersonalBudget
 {
-    int loggedInUserId;
-    vector <User> users;
-    string usersFilename;
-
-    User enterNewUserData();
-    bool checkUsername(string loginSuggestion);
-    int readNewUserId();
-    string readLine();
-    void writeNewUserInFile(User user);
+    UserManager userManager;
 
 public:
-    PersonalBudget()
-    {
-        usersFilename = "users.xml";
-    }
+    PersonalBudget() {};
 
     void registerUser();
     void showUsers();

@@ -101,7 +101,7 @@ void UserManager::changeLoggedInUserPassword()
         if (itr -> getUserId() == loggedInUserId)
         {
             itr -> setPassword(newPassword);
-            //updatePasswordInFile(*itr, loggedInUserId);
+            usersFile.updatePasswordInFile(*itr);
             cout << "Password was changed." << endl << endl;
             system("pause");
         }

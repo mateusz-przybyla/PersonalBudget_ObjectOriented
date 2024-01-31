@@ -14,7 +14,6 @@ class UserManager
 {
     int loggedInUserId;
     vector <User> users;
-    string usersFilename;
     UsersFile usersFile;
 
     User enterNewUserData();
@@ -22,7 +21,7 @@ class UserManager
     int readNewUserId();
 
 public:
-    UserManager() {};
+    UserManager(string usersFilename) : usersFile(usersFilename) {};
 
     void registerUser();
     void showUsers();

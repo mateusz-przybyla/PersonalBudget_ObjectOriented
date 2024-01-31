@@ -20,4 +20,10 @@ void PersonalBudget::loadUsersFromFile()
     userManager.loadUsersFromFile();
 }
 
+void PersonalBudget::changeLoggedInUserPassword()
+{
+    userManager.changeLoggedInUserPassword();
+}
+
+
 

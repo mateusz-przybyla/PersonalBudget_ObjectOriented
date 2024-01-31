@@ -16,5 +16,9 @@ int main()
 
     personalBudget.loginUser();
 
+    personalBudget.changeLoggedInUserPassword();
+
+    personalBudget.showUsers();
+
     return 0;
 }

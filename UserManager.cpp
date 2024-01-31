@@ -90,6 +90,24 @@ void UserManager::loginUser()
     return;
 }
 
+void UserManager::changeLoggedInUserPassword()
+{
+    string newPassword = "";
+    cout << endl << "Enter new password: ";
+    newPassword = InputMethods::readLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getUserId() == loggedInUserId)
+        {
+            itr -> setPassword(newPassword);
+            //updatePasswordInFile(*itr, loggedInUserId);
+            cout << "Password was changed." << endl << endl;
+            system("pause");
+        }
+    }
+}
+
 void UserManager::showUsers()
 {
     for (auto user : users)

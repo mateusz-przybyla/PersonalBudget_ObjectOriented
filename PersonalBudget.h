@@ -18,6 +18,7 @@ public:
     };
 
     void registerUser();
+    void loginUser();
     void showUsers();
     void loadUsersFromFile();
 };

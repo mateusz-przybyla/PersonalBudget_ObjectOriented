@@ -10,9 +10,11 @@ int main()
 
     personalBudget.showUsers();
 
-    personalBudget.registerUser();
+    //personalBudget.registerUser();
 
-    personalBudget.showUsers();
+    //personalBudget.showUsers();
+
+    personalBudget.loginUser();
 
     return 0;
 }

@@ -20,6 +20,7 @@ public:
     void writeNewUserInFile(User user);
     vector <User> loadUsersFromFile();
     int convertStringToInt(string number);
+    void updatePasswordInFile(User user);
 };
 
 #endif

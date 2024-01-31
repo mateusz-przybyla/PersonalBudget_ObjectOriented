@@ -56,6 +56,33 @@ vector <User> UsersFile::loadUsersFromFile()
     return users;
 }
 
+void UsersFile::updatePasswordInFile(User user)
+{
+    bool fileExist = xml.Load(usersFilename);
+
+    if (fileExist)
+    {
+        while (xml.FindElem("users"))
+        {
+            xml.IntoElem();
+
+            while (xml.FindElem("user"))
+            {
+                xml.IntoElem();
+                xml.FindElem("userId");
+                if (convertStringToInt(xml.GetData()) == user.getUserId())
+                {
+                    xml.FindElem("password");
+                    xml.RemoveElem();
+                    xml.AddElem("password", user.getPassword());
+                    xml.Save(usersFilename);
+                }
+                xml.OutOfElem();
+            }
+        }
+    }
+}
+
 int UsersFile::convertStringToInt(string number)
 {
     int numberInt;

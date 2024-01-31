@@ -12,7 +12,7 @@ class PersonalBudget
     UserManager userManager;
 
 public:
-    PersonalBudget()
+    PersonalBudget(string usersFilename) : userManager(usersFilename)
     {
         userManager.loadUsersFromFile();
     };

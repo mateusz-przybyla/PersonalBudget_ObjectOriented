@@ -2,15 +2,17 @@
 #define USERSFILE_H
 
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 #include "Markup.h"
 #include "User.h"
-#include "InputMethods.h"
 
 class UsersFile
 {
     int lastUserId;
     string usersFilename;
+    CMarkup xml;
 
 public:
     UsersFile()
@@ -19,6 +21,8 @@ public:
     }
 
     void writeNewUserInFile(User user);
+    vector <User> loadUsersFromFile();
+    int convertStringToInt(string number);
 };
 
 #endif

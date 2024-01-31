@@ -66,3 +66,8 @@ void UserManager::showUsers()
         cout << user.getSurname() << endl;
     }
 }
+
+void UserManager::loadUsersFromFile()
+{
+    users = usersFile.loadUsersFromFile();
+}

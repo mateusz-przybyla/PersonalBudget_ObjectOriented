@@ -38,7 +38,7 @@ vector <User> UsersFile::loadUsersFromFile()
             {
                 xml.IntoElem();
                 xml.FindElem("userId");
-                user.setUserId(convertStringToInt(xml.GetData()));
+                user.setUserId(ConversionMethods::convertStringToInt(xml.GetData()));
                 xml.FindElem("login");
                 user.setLogin(xml.GetData());
                 xml.FindElem("password");
@@ -70,7 +70,7 @@ void UsersFile::updatePasswordInFile(User user)
             {
                 xml.IntoElem();
                 xml.FindElem("userId");
-                if (convertStringToInt(xml.GetData()) == user.getUserId())
+                if (ConversionMethods::convertStringToInt(xml.GetData()) == user.getUserId())
                 {
                     xml.FindElem("password");
                     xml.RemoveElem();
@@ -81,13 +81,4 @@ void UsersFile::updatePasswordInFile(User user)
             }
         }
     }
-}
-
-int UsersFile::convertStringToInt(string number)
-{
-    int numberInt;
-    istringstream iss(number);
-    iss >> numberInt;
-
-    return numberInt;
 }

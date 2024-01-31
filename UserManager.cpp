@@ -54,6 +54,42 @@ bool UserManager::checkUsername(string loginSuggestion)
     return false;
 }
 
+void UserManager::loginUser()
+{
+    string enteredLogin = "", enteredPassword = "";
+
+    cout << endl << "Enter username: ";
+    enteredLogin = InputMethods::readLine();
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end())
+    {
+        if (itr -> getLogin() == enteredLogin)
+        {
+            for (int attempt = 3; attempt > 0; attempt--)
+            {
+                cout << "Enter password. Attempts left: " << attempt << ": ";
+                enteredPassword = InputMethods::readLine();
+
+                if (itr -> getPassword() == enteredPassword)
+                {
+                    loggedInUserId = itr -> getUserId();
+                    cout << endl << "You logged in." << endl << endl;
+                    system("pause");
+                    return;
+                }
+            }
+            cout << "You have entered the wrong password 3 times." << endl;
+            system("pause");
+            return;
+        }
+        itr++;
+    }
+    cout << "There is no user with that username." << endl << endl;
+    system("pause");
+    return;
+}
+
 void UserManager::showUsers()
 {
     for (auto user : users)

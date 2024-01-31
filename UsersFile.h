@@ -2,11 +2,11 @@
 #define USERSFILE_H
 
 #include <iostream>
-#include <sstream>
 #include <vector>
 
 #include "Markup.h"
 #include "User.h"
+#include "ConversionMethods.h"
 
 class UsersFile
 {
@@ -19,7 +19,6 @@ public:
 
     void writeNewUserInFile(User user);
     vector <User> loadUsersFromFile();
-    int convertStringToInt(string number);
     void updatePasswordInFile(User user);
 };
 

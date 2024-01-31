@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 
-#include "Markup.h"
 #include "User.h"
 #include "InputMethods.h"
 #include "UsersFile.h"
@@ -27,6 +26,8 @@ public:
 
     void registerUser();
     void showUsers();
+
+    void loadUsersFromFile();
 };
 
 #endif

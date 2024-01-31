@@ -2,7 +2,6 @@
 #define PERSONALBUDGET_H
 
 #include <iostream>
-#include <vector>
 
 #include "UserManager.h"
 
@@ -13,10 +12,14 @@ class PersonalBudget
     UserManager userManager;
 
 public:
-    PersonalBudget() {};
+    PersonalBudget()
+    {
+        userManager.loadUsersFromFile();
+    };
 
     void registerUser();
     void showUsers();
+    void loadUsersFromFile();
 };
 
 #endif

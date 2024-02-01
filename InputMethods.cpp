@@ -16,32 +16,14 @@ double InputMethods::readDouble()
     {
         getline(cin, input);
 
-        input = replaceCommaWithDot(input);
+        input = AuxiliaryMethods::replaceCommaWithDot(input);
 
         stringstream myStream(input);
         if (myStream >> number)
             break;
         cout << "It is not a number. Type again. " << endl;
     }
-    return roundDouble(number);
-}
-
-double InputMethods::roundDouble(double number)
-{
-    return round(number * 100) / 100;
-}
-
-string InputMethods::replaceCommaWithDot(string text)
-{
-    if (!text.empty())
-    {
-        for (size_t i = 0; i < text.length(); i++)
-        {
-            if (text[i] == ',')
-                text.replace(i, 1, ".");
-        }
-    }
-    return text;
+    return AuxiliaryMethods::roundDouble(number);
 }
 
 char InputMethods::readChar()

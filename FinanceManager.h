@@ -6,7 +6,6 @@
 
 #include "Transaction.h"
 #include "InputMethods.h"
-#include "ConversionMethods.h"
 #include "DateOperations.h"
 
 class FinanceManager
@@ -17,8 +16,6 @@ class FinanceManager
 
     Transaction enterNewIncomeData(int loggedInUserId);
     int readNewIncomeId();
-
-    string replaceCommaWithDot(string text);
 
 public:
     FinanceManager() {};

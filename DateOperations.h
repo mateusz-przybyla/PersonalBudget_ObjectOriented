@@ -4,10 +4,10 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
-#include <sstream>
 
 #include "ConversionMethods.h"
 #include "InputMethods.h"
+#include "AuxiliaryMethods.h"
 
 class DateOperations
 {
@@ -15,10 +15,8 @@ class DateOperations
     string readDay(string date);
     string readMonth(string date);
     string readYear(string date);
-    string readNumber(string text, int signPosition);
     bool checkIfEnteredDateIsCorrect(string date);
     bool checkNumberOfDaysInMonth(int day, int month, int year);
-
     int mergeDateWithoutDashes(string date);
 
 public:

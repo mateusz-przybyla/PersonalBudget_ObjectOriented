@@ -46,7 +46,7 @@ string DateOperations::readTodaysDate()
 string DateOperations::readDay(string date)
 {
     int position = date.find_last_of('-') + 1;
-    string day = readNumber(date, position);
+    string day = AuxiliaryMethods::readNumber(date, position);
 
     return day;
 }
@@ -54,7 +54,7 @@ string DateOperations::readDay(string date)
 string DateOperations::readMonth(string date)
 {
     int position = date.find_first_of('-') + 1;
-    string month = readNumber(date, position);
+    string month = AuxiliaryMethods::readNumber(date, position);
 
     return month;
 }
@@ -62,20 +62,9 @@ string DateOperations::readMonth(string date)
 string DateOperations::readYear(string date)
 {
     int position = 0;
-    string year = readNumber(date, position);
+    string year = AuxiliaryMethods::readNumber(date, position);
 
     return year;
-}
-
-string DateOperations::readNumber(string text, int signPosition)
-{
-    string number = "";
-    while (isdigit(text[signPosition]))
-    {
-        number += text[signPosition];
-        signPosition++;
-    }
-    return number;
 }
 
 bool DateOperations::checkIfEnteredDateIsCorrect(string date)

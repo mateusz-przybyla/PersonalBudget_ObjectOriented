@@ -6,3 +6,59 @@ string InputMethods::readLine()
     getline(cin, input);
     return input;
 }
+
+double InputMethods::readDouble()
+{
+    string input = "";
+    double number = 0;
+
+    while (true)
+    {
+        getline(cin, input);
+
+        input = replaceCommaWithDot(input);
+
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "It is not a number. Type again. " << endl;
+    }
+    return roundDouble(number);
+}
+
+double InputMethods::roundDouble(double number)
+{
+    return round(number * 100) / 100;
+}
+
+string InputMethods::replaceCommaWithDot(string text)
+{
+    if (!text.empty())
+    {
+        for (size_t i = 0; i < text.length(); i++)
+        {
+            if (text[i] == ',')
+                text.replace(i, 1, ".");
+        }
+    }
+    return text;
+}
+
+char InputMethods::readChar()
+{
+    string input = "";
+    char character  = {0};
+
+    while (true)
+    {
+        getline(cin, input);
+
+        if (input.length() == 1)
+        {
+            character = input[0];
+            break;
+        }
+        cout << "This is not a single character. Type again: " << endl;
+    }
+    return character;
+}

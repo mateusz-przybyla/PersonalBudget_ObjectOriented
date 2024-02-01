@@ -23,11 +23,12 @@ class UserManager
 public:
     UserManager(string usersFilename) : usersFile(usersFilename) {};
 
+    int getLoggedInUserId();
+
     void registerUser();
     void loginUser();
     void changeLoggedInUserPassword();
     void showUsers();
-
     void loadUsersFromFile();
 };
 

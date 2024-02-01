@@ -25,5 +25,12 @@ void PersonalBudget::changeLoggedInUserPassword()
     userManager.changeLoggedInUserPassword();
 }
 
+void PersonalBudget::addIncome()
+{
+    financeManager.addIncome(userManager.getLoggedInUserId());
+}
 
-
+void PersonalBudget::showIncomes()
+{
+    financeManager.showIncomes();
+}

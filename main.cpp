@@ -8,17 +8,10 @@ int main()
 {
     PersonalBudget personalBudget("users.xml");
 
-    personalBudget.showUsers();
-
-    //personalBudget.registerUser();
-
-    //personalBudget.showUsers();
-
     personalBudget.loginUser();
-
-    personalBudget.changeLoggedInUserPassword();
-
-    personalBudget.showUsers();
+    personalBudget.addIncome();
+    personalBudget.addIncome();
+    personalBudget.showIncomes();
 
     return 0;
 }

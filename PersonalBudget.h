@@ -4,12 +4,16 @@
 #include <iostream>
 
 #include "UserManager.h"
+#include "FinanceManager.h"
 
 using namespace std;
 
 class PersonalBudget
 {
     UserManager userManager;
+    FinanceManager financeManager;
+
+    int loggedInUserId;
 
 public:
     PersonalBudget(string usersFilename) : userManager(usersFilename)
@@ -22,6 +26,9 @@ public:
     void changeLoggedInUserPassword();
     void showUsers();
     void loadUsersFromFile();
+
+    void addIncome();
+    void showIncomes();
 };
 
 #endif

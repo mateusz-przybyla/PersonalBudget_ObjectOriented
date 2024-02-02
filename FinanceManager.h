@@ -10,17 +10,17 @@
 
 class FinanceManager
 {
-    int lastIncomeId;
+    const int LOGGED_IN_USER_ID;
     vector <Transaction> incomes;
     DateOperations dateOperations;
 
-    Transaction enterNewIncomeData(int loggedInUserId);
+    Transaction enterNewIncomeData();
     int readNewIncomeId();
 
 public:
-    FinanceManager() {};
+    FinanceManager(int loggedInUserId) : LOGGED_IN_USER_ID(loggedInUserId) {};
 
-    void addIncome(int loggedInUserId);
+    void addIncome();
     void showIncomes();
 };
 

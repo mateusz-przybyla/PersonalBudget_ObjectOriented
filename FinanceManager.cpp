@@ -1,12 +1,12 @@
 #include "FinanceManager.h"
 
-void FinanceManager::addIncome(int loggedInUserId)
+void FinanceManager::addIncome()
 {
     Transaction income;
 
     system("cls");
     cout << " >>> ADDING NEW INCOME <<<" << endl << endl;
-    income = enterNewIncomeData(loggedInUserId);
+    income = enterNewIncomeData();
 
     incomes.push_back(income);
 
@@ -17,12 +17,12 @@ void FinanceManager::addIncome(int loggedInUserId)
     system("pause");
 }
 
-Transaction FinanceManager::enterNewIncomeData(int loggedInUserId)
+Transaction FinanceManager::enterNewIncomeData()
 {
     Transaction income;
 
     income.setTransactionId(readNewIncomeId());
-    income.setUserId(loggedInUserId);
+    income.setUserId(LOGGED_IN_USER_ID);
     income.setDate(dateOperations.readSelectedTransactionDate());
 
     cout << "Enter purpose: ";

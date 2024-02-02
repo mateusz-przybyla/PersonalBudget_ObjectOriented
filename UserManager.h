@@ -21,7 +21,11 @@ class UserManager
     int readNewUserId();
 
 public:
-    UserManager(string usersFilename) : usersFile(usersFilename) {};
+    UserManager(string usersFilename) : usersFile(usersFilename)
+    {
+        loggedInUserId = 0;
+        users = usersFile.loadUsersFromFile();
+    };
 
     int getLoggedInUserId();
 
@@ -30,6 +34,7 @@ public:
     void changeLoggedInUserPassword();
     void showUsers();
     void loadUsersFromFile();
+    bool checkIfUserLoggedIn();
 };
 
 #endif

@@ -11,21 +11,23 @@ using namespace std;
 class PersonalBudget
 {
     UserManager userManager;
-    FinanceManager financeManager;
-
-    int loggedInUserId;
+    FinanceManager *financeManager;
 
 public:
     PersonalBudget(string usersFilename) : userManager(usersFilename)
     {
-        userManager.loadUsersFromFile();
+        financeManager = NULL;
     };
+    ~PersonalBudget()
+    {
+        delete financeManager;
+        financeManager = NULL;
+    }
 
     void registerUser();
     void loginUser();
     void changeLoggedInUserPassword();
-    void showUsers();
-    void loadUsersFromFile();
+    bool checkIfUserLoggedIn();
 
     void addIncome();
     void showIncomes();

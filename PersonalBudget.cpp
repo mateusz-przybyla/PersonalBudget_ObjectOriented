@@ -8,29 +8,44 @@ void PersonalBudget::registerUser()
 void PersonalBudget::loginUser()
 {
     userManager.loginUser();
-}
-
-void PersonalBudget::showUsers()
-{
-    userManager.showUsers();
-}
-
-void PersonalBudget::loadUsersFromFile()
-{
-    userManager.loadUsersFromFile();
+    if (checkIfUserLoggedIn())
+    {
+        financeManager = new FinanceManager(userManager.getLoggedInUserId());
+    }
 }
 
 void PersonalBudget::changeLoggedInUserPassword()
 {
-    userManager.changeLoggedInUserPassword();
+    if (checkIfUserLoggedIn())
+    {
+        userManager.changeLoggedInUserPassword();
+    }
+    else
+    {
+        cout << "Log in before change password." << endl;
+        system("pause");
+    }
 }
 
 void PersonalBudget::addIncome()
 {
-    financeManager.addIncome(userManager.getLoggedInUserId());
+    if (checkIfUserLoggedIn())
+    {
+        financeManager->addIncome();
+    }
+    else
+    {
+        cout << "Log in before add new income." << endl;
+        system("pause");
+    }
 }
 
 void PersonalBudget::showIncomes()
 {
-    financeManager.showIncomes();
+    financeManager->showIncomes();
+}
+
+bool PersonalBudget::checkIfUserLoggedIn()
+{
+    return userManager.checkIfUserLoggedIn();
 }

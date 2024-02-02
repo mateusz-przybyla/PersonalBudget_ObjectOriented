@@ -126,7 +126,10 @@ void UserManager::showUsers()
     }
 }
 
-void UserManager::loadUsersFromFile()
+bool UserManager::checkIfUserLoggedIn()
 {
-    users = usersFile.loadUsersFromFile();
+    if (loggedInUserId > 0)
+        return true;
+    else
+        return false;
 }

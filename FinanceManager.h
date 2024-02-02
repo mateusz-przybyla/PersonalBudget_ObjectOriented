@@ -3,38 +3,24 @@
 
 #include <iostream>
 #include <vector>
-#include <ctime>
-#include <sstream>
-#include <iomanip>
 
 #include "Transaction.h"
 #include "InputMethods.h"
-#include "ConversionMethods.h"
+#include "DateOperations.h"
 
 class FinanceManager
 {
-    int lastIncomeId;
+    const int LOGGED_IN_USER_ID;
     vector <Transaction> incomes;
+    DateOperations dateOperations;
 
-    Transaction enterNewIncomeData(int loggedInUserId);
+    Transaction enterNewIncomeData();
     int readNewIncomeId();
 
-    int readSelectedTransactionDate();
-    string readTodaysDate();
-    string readDay(string date);
-    string readMonth(string date);
-    string readYear(string date);
-    string readNumber(string text, int signPosition);
-    bool checkIfEnteredDateIsCorrect(string date);
-    bool checkNumberOfDaysInMonth(int day, int month, int year);
-
-    string replaceCommaWithDot(string text);
-    int mergeDateWithoutDashes(string date);
-
 public:
-    FinanceManager() {};
+    FinanceManager(int loggedInUserId) : LOGGED_IN_USER_ID(loggedInUserId) {};
 
-    void addIncome(int loggedInUserId);
+    void addIncome();
     void showIncomes();
 };
 

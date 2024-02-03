@@ -10,7 +10,7 @@ void PersonalBudget::loginUser()
     userManager.loginUser();
     if (checkIfUserLoggedIn())
     {
-        financeManager = new FinanceManager(userManager.getLoggedInUserId());
+        financeManager = new FinanceManager(userManager.getLoggedInUserId(), INCOMES_FILENAME);
     }
 }
 

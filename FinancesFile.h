@@ -4,13 +4,25 @@
 #include <iostream>
 #include <vector>
 
-class FinanceFile
+#include "Markup.h"
+#include "Transaction.h"
+#include "ConversionMethods.h"
+
+class FinancesFile
 {
+    int lastIncomeId;
+    const string INCOMES_FILENAME;
+    vector <Transaction> incomes;
+    CMarkup xml;
 
 public:
-    FinanceFile() {};
+    FinancesFile(string incomesFilename) : INCOMES_FILENAME(incomesFilename)
+    {
+        lastIncomeId = 0;
+    };
 
-
+    vector <Transaction> loadIncomesFromFile(int loggedInUserId);
+    bool writeNewIncomeInFile(Transaction income);
 };
 
 #endif

@@ -8,3 +8,12 @@ int ConversionMethods::convertStringToInt(string number)
 
     return numberInt;
 }
+
+double ConversionMethods::convertStringToDouble(string number)
+{
+    double numberDouble;
+    istringstream iss(number);
+    iss >> numberDouble;
+
+    return numberDouble;
+}

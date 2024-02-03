@@ -10,6 +10,7 @@ class ConversionMethods
 {
 public:
     static int convertStringToInt(string number);
+    static double convertStringToDouble(string number);
 };
 
 #endif

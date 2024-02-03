@@ -10,10 +10,10 @@ void FinanceManager::addIncome()
 
     incomes.push_back(income);
 
-    //if (writeNewIncomeInFile(income))
-        //cout << endl << "New income was added." << endl << endl;
-    //else
-       //cout << "Error. Failed to add new income to file." << endl;
+    if (financesFile.writeNewIncomeInFile(income))
+        cout << endl << "New income was added." << endl << endl;
+    else
+       cout << "Error. Failed to add new income to file." << endl;
     system("pause");
 }
 
@@ -52,4 +52,5 @@ void FinanceManager::showIncomes()
         cout << income.getItem() << endl;
         cout << income.getAmount() << endl;
     }
+    system("pause");
 }

@@ -34,7 +34,6 @@ void FinanceManager::addExpense()
     system("pause");
 }
 
-
 Transaction FinanceManager::enterNewIncomeData()
 {
     Transaction income;

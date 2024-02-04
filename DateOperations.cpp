@@ -149,17 +149,17 @@ string DateOperations::readStartDate(char choice)
 
     switch (choice)
     {
-    case '1':
+    case '3':
         startDate = currentDate;
         startDate.replace(8, 2, "01");
         break;
-    case '2':
+    case '4':
         startDate = currentDate;
         startDate.replace(8, 2, "01");
         startDate.replace(5, 2, readPreviousMonth(currentDate));
         startDate.replace(0, 4, checkPreviousYear(currentDate));
         break;
-    case '3':
+    case '5':
         do
         {
             cout << endl << "Enter start date in YYYY-MM-DD format: ";
@@ -177,16 +177,16 @@ string DateOperations::readEndDate(char choice)
 
     switch (choice)
     {
-    case '1':
+    case '3':
         endDate = currentDate;
         break;
-    case '2':
+    case '4':
         endDate = currentDate;
         endDate.replace(8, 2, calculateHowManyDaysPerPreviousMonth(currentDate));
         endDate.replace(5, 2, readPreviousMonth(currentDate));
         endDate.replace(0, 4, checkPreviousYear(currentDate));
         break;
-    case '3':
+    case '5':
         do
         {
             cout << "Enter end date in YYYY-MM-DD format: ";

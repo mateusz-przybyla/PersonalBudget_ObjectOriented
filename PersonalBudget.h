@@ -30,10 +30,13 @@ public:
     void loginUser();
     void changeLoggedInUserPassword();
     bool checkIfUserLoggedIn();
-
+    char selectAnOptionFromMainMenu();
+    char selectAnOptionFromUserMenu();
     void addIncome();
     void addExpense();
-    void showFinanseBalance();
+    void showCurrentMonthsBalance(char choice);
+    void showPreviousMonthsBalance(char choice);
+    void showSelectedPeriodBalance(char choice);
 };
 
 #endif

@@ -123,14 +123,14 @@ int FinanceManager::readNewExpenseId()
 void FinanceManager::showFinanseBalance(char choice)
 {
     string startDate = "", endDate = "";
-    double sumOfIncomes = 0;
+    double sumOfIncomes = 0, sumOfExpenses = 0;
 
     startDate = dateOperations.readStartDate(choice);
     endDate = dateOperations.readEndDate(choice);
     dateOperations.checkOrderOfEnteredDates(startDate, endDate);
 
     system("cls");
-    if ((!incomes.empty()))
+    if ((!incomes.empty()) || (!expenses.empty()))
     {
         cout << ">>> TRANSACTIONS SEARCHING <<<" << endl;
         cout << "------------------------------" << endl;
@@ -140,13 +140,13 @@ void FinanceManager::showFinanseBalance(char choice)
         sumOfIncomes = sumTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), incomes);
         cout << endl << "------------------------------" << endl;
         cout << "Sum of incomes: " << sumOfIncomes << " zl" << endl;
-        //cout << endl << endl << "-> expenses: " << endl;
-        //selectSortedTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), expenses);
-        //sumOfExpenses = sumTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), expenses);
-        //cout << endl << "------------------------------" << endl;
-        //cout << "Sum of expenses: " << sumOfExpenses << " zl" << endl;
-        //cout << endl << "==============================" << endl;
-        //cout << "Balance (Incomes - Expenses): " << sumOfIncomes - sumOfExpenses << " zl" << endl;
+        cout << endl << endl << "-> expenses: " << endl;
+        selectSortedTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), expenses);
+        sumOfExpenses = sumTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), expenses);
+        cout << endl << "------------------------------" << endl;
+        cout << "Sum of expenses: " << sumOfExpenses << " zl" << endl;
+        cout << endl << "==============================" << endl;
+        cout << "Balance (Incomes - Expenses): " << sumOfIncomes - sumOfExpenses << " zl" << endl;
     }
     else
         cout << endl << "No transactions on the list." << endl << endl;
@@ -189,18 +189,4 @@ double FinanceManager::sumTransactions(int startDate, int endDate, vector <Trans
             sum += itr -> getAmount();
     }
     return sum;
-}
-
-void FinanceManager::showExpenses()
-{
-    for (auto expense : expenses)
-    {
-        cout << endl;
-        cout << expense.getTransactionId() << endl;
-        cout << expense.getUserId() << endl;
-        cout << expense.getDate() << endl;
-        cout << expense.getItem() << endl;
-        cout << expense.getAmount() << endl;
-    }
-    system("pause");
 }

@@ -37,7 +37,6 @@ public:
     void addIncome();
     void addExpense();
     void showFinanseBalance(char choice);
-    void showExpenses();
 };
 
 #endif

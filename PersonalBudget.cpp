@@ -63,8 +63,3 @@ bool PersonalBudget::checkIfUserLoggedIn()
 {
     return userManager.checkIfUserLoggedIn();
 }
-
-void PersonalBudget::showExpenses()
-{
-    financeManager->showExpenses();
-}

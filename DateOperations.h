@@ -17,12 +17,19 @@ class DateOperations
     string readYear(string date);
     bool checkIfEnteredDateIsCorrect(string date);
     bool checkNumberOfDaysInMonth(int day, int month, int year);
-    int mergeDateWithoutDashes(string date);
+    string readPreviousMonth(string date);
+    string checkPreviousYear(string date);
+    string calculateHowManyDaysPerPreviousMonth(string date);
 
 public:
     DateOperations() {};
 
     int readSelectedTransactionDate();
+    int mergeDateWithoutDashes(string date);
+    string splitDateByDashes(int date);
+    string readStartDate(char choice);
+    string readEndDate(char choice);
+    void checkOrderOfEnteredDates(string &startDate, string &endDate);
 };
 
 #endif

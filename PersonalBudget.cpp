@@ -40,9 +40,10 @@ void PersonalBudget::addIncome()
     }
 }
 
-void PersonalBudget::showIncomes()
+void PersonalBudget::showFinanseBalance()
 {
-    financeManager->showIncomes();
+    char choice = '1';
+    financeManager->showFinanseBalance(choice);
 }
 
 bool PersonalBudget::checkIfUserLoggedIn()

@@ -9,6 +9,7 @@ using namespace std;
 class ConversionMethods
 {
 public:
+    static string convertIntToString(int number);
     static int convertStringToInt(string number);
     static double convertStringToDouble(string number);
 };

@@ -1,5 +1,13 @@
 #include "ConversionMethods.h"
 
+string ConversionMethods::convertIntToString(int number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
 int ConversionMethods::convertStringToInt(string number)
 {
     int numberInt;

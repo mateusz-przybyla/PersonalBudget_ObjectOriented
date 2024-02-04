@@ -27,10 +27,10 @@ void FinanceManager::addExpense()
 
     expenses.push_back(expense);
 
-    //if (writeNewExpenseInFile(expense))
-        //cout << endl << "New expense was added." << endl << endl;
-    //else
-       //cout << "Error. Failed to add new expense to file." << endl;
+    if (financesFile.writeNewExpenseInFile(expense))
+        cout << endl << "New expense was added." << endl << endl;
+    else
+       cout << "Error. Failed to add new expense to file." << endl;
     system("pause");
 }
 
@@ -202,4 +202,5 @@ void FinanceManager::showExpenses()
         cout << expense.getItem() << endl;
         cout << expense.getAmount() << endl;
     }
+    system("pause");
 }

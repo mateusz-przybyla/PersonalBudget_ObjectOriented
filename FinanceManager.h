@@ -28,9 +28,10 @@ class FinanceManager
     double sumTransactions(int startDate, int endDate, vector <Transaction> transactions);
 
 public:
-    FinanceManager(int loggedInUserId, string incomesFilename) : LOGGED_IN_USER_ID(loggedInUserId), financesFile(incomesFilename)
+    FinanceManager(int loggedInUserId, string incomesFilename, string expensesFilename) : LOGGED_IN_USER_ID(loggedInUserId), financesFile(incomesFilename, expensesFilename)
     {
         incomes = financesFile.loadIncomesFromFile(LOGGED_IN_USER_ID);
+        expenses = financesFile.loadExpensesFromFile(LOGGED_IN_USER_ID);
     };
 
     void addIncome();

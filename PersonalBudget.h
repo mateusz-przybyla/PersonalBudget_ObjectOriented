@@ -31,7 +31,9 @@ public:
     bool checkIfUserLoggedIn();
 
     void addIncome();
+    void addExpense();
     void showFinanseBalance();
+    void showExpenses();
 };
 
 #endif

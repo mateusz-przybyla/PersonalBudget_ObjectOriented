@@ -14,11 +14,15 @@ class FinanceManager
 {
     const int LOGGED_IN_USER_ID;
     vector <Transaction> incomes;
+    vector <Transaction> expenses;
     DateOperations dateOperations;
     FinancesFile financesFile;
 
     Transaction enterNewIncomeData();
+    Transaction enterNewExpenseData();
+    char showTypesOfExpenses();
     int readNewIncomeId();
+    int readNewExpenseId();
     void showTransactionData(Transaction transaction);
     void selectSortedTransactions(int startDate, int endDate, vector <Transaction> transactions);
     double sumTransactions(int startDate, int endDate, vector <Transaction> transactions);
@@ -30,7 +34,9 @@ public:
     };
 
     void addIncome();
+    void addExpense();
     void showFinanseBalance(char choice);
+    void showExpenses();
 };
 
 #endif

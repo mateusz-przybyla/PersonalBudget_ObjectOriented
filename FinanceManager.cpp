@@ -17,6 +17,24 @@ void FinanceManager::addIncome()
     system("pause");
 }
 
+void FinanceManager::addExpense()
+{
+    Transaction expense;
+
+    system("cls");
+    cout << " >>> ADDING NEW EXPENSE <<<" << endl << endl;
+    expense = enterNewExpenseData();
+
+    expenses.push_back(expense);
+
+    //if (writeNewExpenseInFile(expense))
+        //cout << endl << "New expense was added." << endl << endl;
+    //else
+       //cout << "Error. Failed to add new expense to file." << endl;
+    system("pause");
+}
+
+
 Transaction FinanceManager::enterNewIncomeData()
 {
     Transaction income;
@@ -33,12 +51,73 @@ Transaction FinanceManager::enterNewIncomeData()
     return income;
 }
 
+Transaction FinanceManager::enterNewExpenseData()
+{
+    Transaction expense;
+
+    expense.setTransactionId(readNewExpenseId());
+    expense.setUserId(LOGGED_IN_USER_ID);
+    expense.setDate(dateOperations.readSelectedTransactionDate());
+
+    while (expense.getItem().empty())
+    {
+        char choice;
+        choice = showTypesOfExpenses();
+
+        switch (choice)
+        {
+            case '1': expense.setItem("food"); break;
+            case '2': expense.setItem("vehicles"); break;
+            case '3': expense.setItem("home"); break;
+            case '4': expense.setItem("health"); break;
+            case '5': expense.setItem("events"); break;
+            case '6': expense.setItem("holiday/journeys"); break;
+            case '7': expense.setItem("other"); break;
+            default:
+                cout << endl << "There is no such option! Try again." << endl << endl;
+                system("pause");
+                break;
+        }
+    }
+    cout << "Enter amount: ";
+    expense.setAmount(InputMethods::readDouble());
+
+    return expense;
+}
+
+char FinanceManager::showTypesOfExpenses()
+{
+    char choice;
+
+    system("cls");
+    cout << "Select an expense category: " << endl;
+    cout << "-> 1. food" << endl;
+    cout << "-> 2. vehicles" << endl;
+    cout << "-> 3. home" << endl;
+    cout << "-> 4. health" << endl;
+    cout << "-> 5. events" << endl;
+    cout << "-> 6. holiday/journeys" << endl;
+    cout << "-> 7. other" << endl << endl;
+    cout << "Your choice: ";
+    choice = InputMethods::readChar();
+
+    return choice;
+}
+
 int FinanceManager::readNewIncomeId()
 {
     if (incomes.empty())
         return 1;
     else
         return incomes.back().getTransactionId() + 1;
+}
+
+int FinanceManager::readNewExpenseId()
+{
+    if (expenses.empty())
+        return 1;
+    else
+        return expenses.back().getTransactionId() + 1;
 }
 
 void FinanceManager::showFinanseBalance(char choice)
@@ -110,4 +189,17 @@ double FinanceManager::sumTransactions(int startDate, int endDate, vector <Trans
             sum += itr -> getAmount();
     }
     return sum;
+}
+
+void FinanceManager::showExpenses()
+{
+    for (auto expense : expenses)
+    {
+        cout << endl;
+        cout << expense.getTransactionId() << endl;
+        cout << expense.getUserId() << endl;
+        cout << expense.getDate() << endl;
+        cout << expense.getItem() << endl;
+        cout << expense.getAmount() << endl;
+    }
 }

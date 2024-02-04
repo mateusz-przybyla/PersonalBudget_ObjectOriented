@@ -40,6 +40,19 @@ void PersonalBudget::addIncome()
     }
 }
 
+void PersonalBudget::addExpense()
+{
+    if (checkIfUserLoggedIn())
+    {
+        financeManager->addExpense();
+    }
+    else
+    {
+        cout << "Log in before add new expense." << endl;
+        system("pause");
+    }
+}
+
 void PersonalBudget::showFinanseBalance()
 {
     char choice = '1';
@@ -49,4 +62,9 @@ void PersonalBudget::showFinanseBalance()
 bool PersonalBudget::checkIfUserLoggedIn()
 {
     return userManager.checkIfUserLoggedIn();
+}
+
+void PersonalBudget::showExpenses()
+{
+    financeManager->showExpenses();
 }

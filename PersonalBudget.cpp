@@ -10,7 +10,7 @@ void PersonalBudget::loginUser()
     userManager.loginUser();
     if (checkIfUserLoggedIn())
     {
-        financeManager = new FinanceManager(userManager.getLoggedInUserId(), INCOMES_FILENAME);
+        financeManager = new FinanceManager(userManager.getLoggedInUserId(), INCOMES_FILENAME, EXPENSES_FILENAME);
     }
 }
 
@@ -36,6 +36,19 @@ void PersonalBudget::addIncome()
     else
     {
         cout << "Log in before add new income." << endl;
+        system("pause");
+    }
+}
+
+void PersonalBudget::addExpense()
+{
+    if (checkIfUserLoggedIn())
+    {
+        financeManager->addExpense();
+    }
+    else
+    {
+        cout << "Log in before add new expense." << endl;
         system("pause");
     }
 }

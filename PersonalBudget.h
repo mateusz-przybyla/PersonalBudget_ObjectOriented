@@ -13,9 +13,10 @@ class PersonalBudget
     UserManager userManager;
     FinanceManager *financeManager;
     const string INCOMES_FILENAME;
+    const string EXPENSES_FILENAME;
 
 public:
-    PersonalBudget(string usersFilename, string incomesFilename) : userManager(usersFilename), INCOMES_FILENAME(incomesFilename)
+    PersonalBudget(string usersFilename, string incomesFilename, string expensesFilename) : userManager(usersFilename), INCOMES_FILENAME(incomesFilename), EXPENSES_FILENAME(expensesFilename)
     {
         financeManager = NULL;
     };
@@ -31,6 +32,7 @@ public:
     bool checkIfUserLoggedIn();
 
     void addIncome();
+    void addExpense();
     void showFinanseBalance();
 };
 

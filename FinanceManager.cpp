@@ -17,6 +17,24 @@ void FinanceManager::addIncome()
     system("pause");
 }
 
+void FinanceManager::addExpense()
+{
+    Transaction expense;
+
+    system("cls");
+    cout << " >>> ADDING NEW EXPENSE <<<" << endl << endl;
+    expense = enterNewExpenseData();
+
+    expenses.push_back(expense);
+
+    if (financesFile.writeNewExpenseInFile(expense))
+        cout << endl << "New expense was added." << endl << endl;
+    else
+       cout << "Error. Failed to add new expense to file." << endl;
+    system("pause");
+}
+
+
 Transaction FinanceManager::enterNewIncomeData()
 {
     Transaction income;
@@ -33,6 +51,59 @@ Transaction FinanceManager::enterNewIncomeData()
     return income;
 }
 
+Transaction FinanceManager::enterNewExpenseData()
+{
+    Transaction expense;
+
+    expense.setTransactionId(readNewExpenseId());
+    expense.setUserId(LOGGED_IN_USER_ID);
+    expense.setDate(dateOperations.readSelectedTransactionDate());
+
+    while (expense.getItem().empty())
+    {
+        char choice;
+        choice = showTypesOfExpenses();
+
+        switch (choice)
+        {
+            case '1': expense.setItem("food"); break;
+            case '2': expense.setItem("vehicles"); break;
+            case '3': expense.setItem("home"); break;
+            case '4': expense.setItem("health"); break;
+            case '5': expense.setItem("events"); break;
+            case '6': expense.setItem("holiday/journeys"); break;
+            case '7': expense.setItem("other"); break;
+            default:
+                cout << endl << "There is no such option! Try again." << endl << endl;
+                system("pause");
+                break;
+        }
+    }
+    cout << "Enter amount: ";
+    expense.setAmount(InputMethods::readDouble());
+
+    return expense;
+}
+
+char FinanceManager::showTypesOfExpenses()
+{
+    char choice;
+
+    system("cls");
+    cout << "Select an expense category: " << endl;
+    cout << "-> 1. food" << endl;
+    cout << "-> 2. vehicles" << endl;
+    cout << "-> 3. home" << endl;
+    cout << "-> 4. health" << endl;
+    cout << "-> 5. events" << endl;
+    cout << "-> 6. holiday/journeys" << endl;
+    cout << "-> 7. other" << endl << endl;
+    cout << "Your choice: ";
+    choice = InputMethods::readChar();
+
+    return choice;
+}
+
 int FinanceManager::readNewIncomeId()
 {
     if (incomes.empty())
@@ -41,17 +112,25 @@ int FinanceManager::readNewIncomeId()
         return incomes.back().getTransactionId() + 1;
 }
 
+int FinanceManager::readNewExpenseId()
+{
+    if (expenses.empty())
+        return 1;
+    else
+        return expenses.back().getTransactionId() + 1;
+}
+
 void FinanceManager::showFinanseBalance(char choice)
 {
     string startDate = "", endDate = "";
-    double sumOfIncomes = 0;
+    double sumOfIncomes = 0, sumOfExpenses = 0;
 
     startDate = dateOperations.readStartDate(choice);
     endDate = dateOperations.readEndDate(choice);
     dateOperations.checkOrderOfEnteredDates(startDate, endDate);
 
     system("cls");
-    if ((!incomes.empty()))
+    if ((!incomes.empty()) || (!expenses.empty()))
     {
         cout << ">>> TRANSACTIONS SEARCHING <<<" << endl;
         cout << "------------------------------" << endl;
@@ -61,13 +140,13 @@ void FinanceManager::showFinanseBalance(char choice)
         sumOfIncomes = sumTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), incomes);
         cout << endl << "------------------------------" << endl;
         cout << "Sum of incomes: " << sumOfIncomes << " zl" << endl;
-        //cout << endl << endl << "-> expenses: " << endl;
-        //selectSortedTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), expenses);
-        //sumOfExpenses = sumTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), expenses);
-        //cout << endl << "------------------------------" << endl;
-        //cout << "Sum of expenses: " << sumOfExpenses << " zl" << endl;
-        //cout << endl << "==============================" << endl;
-        //cout << "Balance (Incomes - Expenses): " << sumOfIncomes - sumOfExpenses << " zl" << endl;
+        cout << endl << endl << "-> expenses: " << endl;
+        selectSortedTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), expenses);
+        sumOfExpenses = sumTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), expenses);
+        cout << endl << "------------------------------" << endl;
+        cout << "Sum of expenses: " << sumOfExpenses << " zl" << endl;
+        cout << endl << "==============================" << endl;
+        cout << "Balance (Incomes - Expenses): " << sumOfIncomes - sumOfExpenses << " zl" << endl;
     }
     else
         cout << endl << "No transactions on the list." << endl << endl;

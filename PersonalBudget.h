@@ -31,13 +31,13 @@ public:
     void changeLoggedInUserPassword();
     void logoutUser();
     bool checkIfUserLoggedIn();
-    char selectAnOptionFromMainMenu();
-    char selectAnOptionFromUserMenu();
     void addIncome();
     void addExpense();
     void showCurrentMonthsBalance(char choice);
     void showPreviousMonthsBalance(char choice);
     void showSelectedPeriodBalance(char choice);
+    char selectAnOptionFromMainMenu();
+    char selectAnOptionFromUserMenu();
 };
 
 #endif

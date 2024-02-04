@@ -29,6 +29,7 @@ public:
     void registerUser();
     void loginUser();
     void changeLoggedInUserPassword();
+    void logoutUser();
     bool checkIfUserLoggedIn();
     char selectAnOptionFromMainMenu();
     char selectAnOptionFromUserMenu();

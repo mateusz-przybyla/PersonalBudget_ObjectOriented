@@ -38,7 +38,7 @@ int main()
                 case '4': personalBudget.showPreviousMonthsBalance(choice); break;
                 case '5': personalBudget.showSelectedPeriodBalance(choice); break;
                 case '6': personalBudget.changeLoggedInUserPassword(); break;
-                //case '7': personalBudget.logoutUser(); break;
+                case '7': personalBudget.logoutUser(); break;
             }
         }
     }

@@ -113,23 +113,15 @@ void UserManager::changeLoggedInUserPassword()
     }
 }
 
-void UserManager::showUsers()
-{
-    for (auto user : users)
-    {
-        cout << endl;
-        cout << user.getUserId() << endl;
-        cout << user.getLogin() << endl;
-        cout << user.getPassword() << endl;
-        cout << user.getName() << endl;
-        cout << user.getSurname() << endl;
-    }
-}
-
 bool UserManager::checkIfUserLoggedIn()
 {
     if (loggedInUserId > 0)
         return true;
     else
         return false;
+}
+
+void UserManager::logoutUser()
+{
+    loggedInUserId = 0;
 }

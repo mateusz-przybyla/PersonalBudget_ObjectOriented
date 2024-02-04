@@ -35,6 +35,7 @@ public:
     void showUsers();
     void loadUsersFromFile();
     bool checkIfUserLoggedIn();
+    void logoutUser();
 };
 
 #endif

@@ -27,6 +27,13 @@ void PersonalBudget::changeLoggedInUserPassword()
     }
 }
 
+void PersonalBudget::logoutUser()
+{
+    userManager.logoutUser();
+    delete financeManager;
+    financeManager = NULL;
+}
+
 void PersonalBudget::addIncome()
 {
     if (checkIfUserLoggedIn())

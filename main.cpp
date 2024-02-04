@@ -10,10 +10,9 @@ int main()
 
     personalBudget.loginUser();
 
-    personalBudget.showIncomes();
+    personalBudget.showFinanseBalance();
     personalBudget.addIncome();
-    personalBudget.addIncome();
-    personalBudget.showIncomes();
+    personalBudget.showFinanseBalance();
 
     return 0;
 }

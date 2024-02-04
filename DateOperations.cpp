@@ -126,3 +126,144 @@ int DateOperations::mergeDateWithoutDashes(string date)
 
     return ConversionMethods::convertStringToInt(mergedDate);
 }
+
+string DateOperations::splitDateByDashes(int date)
+{
+    string mergedDate = ConversionMethods::convertIntToString(date);
+    string splitedDate = "";
+
+    for (size_t i = 0; i < mergedDate.length(); i++)
+    {
+        splitedDate += mergedDate[i];
+
+        if ((i == 3) || (i == 5))
+            splitedDate += '-';
+    }
+    return splitedDate;
+}
+
+string DateOperations::readStartDate(char choice)
+{
+    string currentDate = "", startDate = "";
+    currentDate = readTodaysDate();
+
+    switch (choice)
+    {
+    case '1':
+        startDate = currentDate;
+        startDate.replace(8, 2, "01");
+        break;
+    case '2':
+        startDate = currentDate;
+        startDate.replace(8, 2, "01");
+        startDate.replace(5, 2, readPreviousMonth(currentDate));
+        startDate.replace(0, 4, checkPreviousYear(currentDate));
+        break;
+    case '3':
+        do
+        {
+            cout << endl << "Enter start date in YYYY-MM-DD format: ";
+            startDate = InputMethods::readLine();
+        } while (!checkIfEnteredDateIsCorrect(startDate));
+        break;
+    }
+    return startDate;
+}
+
+string DateOperations::readEndDate(char choice)
+{
+    string currentDate = "", endDate = "";
+    currentDate = readTodaysDate();
+
+    switch (choice)
+    {
+    case '1':
+        endDate = currentDate;
+        break;
+    case '2':
+        endDate = currentDate;
+        endDate.replace(8, 2, calculateHowManyDaysPerPreviousMonth(currentDate));
+        endDate.replace(5, 2, readPreviousMonth(currentDate));
+        endDate.replace(0, 4, checkPreviousYear(currentDate));
+        break;
+    case '3':
+        do
+        {
+            cout << "Enter end date in YYYY-MM-DD format: ";
+            endDate = InputMethods::readLine();
+        } while (!checkIfEnteredDateIsCorrect(endDate));
+        break;
+    }
+    return endDate;
+}
+
+string DateOperations::readPreviousMonth(string date)
+{
+    string month = "";
+    string monthsTable[12] = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+
+    month = readMonth(date);
+
+    for (int i = 0; i < 12; i++)
+    {
+        if (month == monthsTable[0])
+        {
+            month = monthsTable[11];
+            break;
+        }
+        else if (month == monthsTable[i])
+        {
+            month =  monthsTable[i - 1];
+            break;
+        }
+    }
+    return month;
+}
+
+string DateOperations::checkPreviousYear(string date)
+{
+    int month = 0, year = 0;
+    month = ConversionMethods::convertStringToInt(readMonth(date));
+    year = ConversionMethods::convertStringToInt(readYear(date));
+
+    if (month == 1)
+        year -= 1;
+
+    return ConversionMethods::convertIntToString(year);
+}
+
+string DateOperations::calculateHowManyDaysPerPreviousMonth(string date)
+{
+    int days = 0, month = 0, year = 0;
+    month = ConversionMethods::convertStringToInt(readPreviousMonth(date));
+    year = ConversionMethods::convertStringToInt(readYear(date));
+
+    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+        days = 31;
+    else if (month == 4 || month == 6 || month == 9 || month == 11)
+        days = 30;
+    else if (month == 2)
+    {
+        if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+            days = 29;
+        else
+            days = 28;
+    }
+    return ConversionMethods::convertIntToString(days);
+}
+
+void DateOperations::checkOrderOfEnteredDates(string &startDate, string &endDate)
+{
+    int startDateInt = 0, endDateInt = 0;
+    string helper = "";
+
+    startDateInt = mergeDateWithoutDashes(startDate);
+    endDateInt = mergeDateWithoutDashes(endDate);
+
+    if (startDateInt > endDateInt)
+    {
+        helper = startDate;
+        startDate = endDate;
+        endDate = helper;
+    }
+}

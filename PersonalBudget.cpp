@@ -9,17 +9,13 @@ void PersonalBudget::loginUser()
 {
     userManager.loginUser();
     if (checkIfUserLoggedIn())
-    {
         financeManager = new FinanceManager(userManager.getLoggedInUserId(), INCOMES_FILENAME, EXPENSES_FILENAME);
-    }
 }
 
 void PersonalBudget::changeLoggedInUserPassword()
 {
     if (checkIfUserLoggedIn())
-    {
         userManager.changeLoggedInUserPassword();
-    }
     else
     {
         cout << "Log in before change password." << endl;
@@ -37,9 +33,7 @@ void PersonalBudget::logoutUser()
 void PersonalBudget::addIncome()
 {
     if (checkIfUserLoggedIn())
-    {
         financeManager->addIncome();
-    }
     else
     {
         cout << "Log in before add new income." << endl;
@@ -50,9 +44,7 @@ void PersonalBudget::addIncome()
 void PersonalBudget::addExpense()
 {
     if (checkIfUserLoggedIn())
-    {
         financeManager->addExpense();
-    }
     else
     {
         cout << "Log in before add new expense." << endl;
@@ -62,17 +54,35 @@ void PersonalBudget::addExpense()
 
 void PersonalBudget::showCurrentMonthsBalance(char choice)
 {
-    financeManager->showFinanseBalance(choice);
+    if (checkIfUserLoggedIn())
+        financeManager->showFinanseBalance(choice);
+    else
+    {
+        cout << "Log in before show current months transactions balance." << endl;
+        system("pause");
+    }
 }
 
 void PersonalBudget::showPreviousMonthsBalance(char choice)
 {
-    financeManager->showFinanseBalance(choice);
+    if (checkIfUserLoggedIn())
+        financeManager->showFinanseBalance(choice);
+    else
+    {
+        cout << "Log in before show previous months transactions balance." << endl;
+        system("pause");
+    }
 }
 
 void PersonalBudget::showSelectedPeriodBalance(char choice)
 {
-    financeManager->showFinanseBalance(choice);
+    if (checkIfUserLoggedIn())
+        financeManager->showFinanseBalance(choice);
+    else
+    {
+        cout << "Log in before show selected period transactions balance." << endl;
+        system("pause");
+    }
 }
 
 bool PersonalBudget::checkIfUserLoggedIn()

@@ -78,7 +78,10 @@ void FinanceManager::showFinanseBalance(char choice)
 
 void FinanceManager::selectSortedTransactions(int startDate, int endDate, vector <Transaction> transactions)
 {
-    //sort(transactions.begin(), transactions.end(), sortCondition);
+    sort(transactions.begin(), transactions.end(), [](Transaction &lhs, Transaction &rhs)
+    {
+        return lhs.getDate() < rhs.getDate();
+    });
 
     for (vector <Transaction>::iterator itr = transactions.begin(); itr != transactions.end(); itr++)
     {

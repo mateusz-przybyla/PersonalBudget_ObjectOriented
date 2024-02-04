@@ -32,8 +32,6 @@ public:
     void registerUser();
     void loginUser();
     void changeLoggedInUserPassword();
-    void showUsers();
-    void loadUsersFromFile();
     bool checkIfUserLoggedIn();
     void logoutUser();
 };

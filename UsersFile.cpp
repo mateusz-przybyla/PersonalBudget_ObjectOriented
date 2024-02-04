@@ -2,7 +2,7 @@
 
 void UsersFile::writeNewUserInFile(User user)
 {
-    bool fileExist = xml.Load(usersFilename);
+    bool fileExist = xml.Load(USERS_FILENAME);
 
     if (!fileExist)
     {
@@ -19,13 +19,13 @@ void UsersFile::writeNewUserInFile(User user)
     xml.AddElem("name", user.getName());
     xml.AddElem("surname", user.getSurname());
 
-    xml.Save(usersFilename);
+    xml.Save(USERS_FILENAME);
 }
 
 vector <User> UsersFile::loadUsersFromFile()
 {
     vector <User> users;
-    bool fileExist = xml.Load(usersFilename);
+    bool fileExist = xml.Load(USERS_FILENAME);
 
     if (fileExist)
     {
@@ -58,7 +58,7 @@ vector <User> UsersFile::loadUsersFromFile()
 
 void UsersFile::updatePasswordInFile(User user)
 {
-    bool fileExist = xml.Load(usersFilename);
+    bool fileExist = xml.Load(USERS_FILENAME);
 
     if (fileExist)
     {
@@ -75,7 +75,7 @@ void UsersFile::updatePasswordInFile(User user)
                     xml.FindElem("password");
                     xml.RemoveElem();
                     xml.AddElem("password", user.getPassword());
-                    xml.Save(usersFilename);
+                    xml.Save(USERS_FILENAME);
                 }
                 xml.OutOfElem();
             }

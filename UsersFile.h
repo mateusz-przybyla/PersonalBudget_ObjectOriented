@@ -11,11 +11,11 @@
 class UsersFile
 {
     int lastUserId;
-    const string usersFilename;
+    const string USERS_FILENAME;
     CMarkup xml;
 
 public:
-    UsersFile(string USERSFILENAME) : usersFilename(USERSFILENAME) {};
+    UsersFile(string usersFilename) : USERS_FILENAME(usersFilename) {};
 
     void writeNewUserInFile(User user);
     vector <User> loadUsersFromFile();

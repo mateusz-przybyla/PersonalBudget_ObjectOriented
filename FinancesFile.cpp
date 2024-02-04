@@ -24,7 +24,7 @@ vector <Transaction> FinancesFile::loadIncomesFromFile(int loggedInUserId)
                     xml.FindElem("userId");
                     income.setUserId(ConversionMethods::convertStringToInt(xml.GetData()));
                     xml.FindElem("date");
-                    income.setDate(ConversionMethods::convertStringToInt(xml.GetData()));
+                    income.setDate(dateOperations.mergeDateWithoutDashes(xml.GetData()));
                     xml.FindElem("item");
                     income.setItem(xml.GetData());
                     xml.FindElem("amount");
@@ -55,7 +55,7 @@ bool FinancesFile::writeNewIncomeInFile(Transaction income)
     xml.IntoElem();
     xml.AddElem("incomeId", income.getTransactionId());
     xml.AddElem("userId", income.getUserId());
-    xml.AddElem("date", income.getDate());
+    xml.AddElem("date", dateOperations.splitDateByDashes(income.getDate()));
     xml.AddElem("item", income.getItem());
     xml.AddElem("amount", income.getAmount() * 100);
 

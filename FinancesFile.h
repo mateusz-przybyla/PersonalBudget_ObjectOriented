@@ -7,12 +7,14 @@
 #include "Markup.h"
 #include "Transaction.h"
 #include "ConversionMethods.h"
+#include "DateOperations.h"
 
 class FinancesFile
 {
     int lastIncomeId;
     const string INCOMES_FILENAME;
     vector <Transaction> incomes;
+    DateOperations dateOperations;
     CMarkup xml;
 
 public:

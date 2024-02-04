@@ -27,6 +27,13 @@ void PersonalBudget::changeLoggedInUserPassword()
     }
 }
 
+void PersonalBudget::logoutUser()
+{
+    userManager.logoutUser();
+    delete financeManager;
+    financeManager = NULL;
+}
+
 void PersonalBudget::addIncome()
 {
     if (checkIfUserLoggedIn())
@@ -53,13 +60,62 @@ void PersonalBudget::addExpense()
     }
 }
 
-void PersonalBudget::showFinanseBalance()
+void PersonalBudget::showCurrentMonthsBalance(char choice)
 {
-    char choice = '1';
+    financeManager->showFinanseBalance(choice);
+}
+
+void PersonalBudget::showPreviousMonthsBalance(char choice)
+{
+    financeManager->showFinanseBalance(choice);
+}
+
+void PersonalBudget::showSelectedPeriodBalance(char choice)
+{
     financeManager->showFinanseBalance(choice);
 }
 
 bool PersonalBudget::checkIfUserLoggedIn()
 {
     return userManager.checkIfUserLoggedIn();
+}
+
+char PersonalBudget::selectAnOptionFromMainMenu()
+{
+    char choice;
+
+    system("cls");
+    cout << "     >>> MAIN MENU <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "-> 1. Create an account" << endl;
+    cout << "-> 2. Sign in" << endl;
+    cout << "-> 9. Close app" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Your choice: ";
+    choice = InputMethods::readChar();
+
+    return choice;
+}
+
+char PersonalBudget::selectAnOptionFromUserMenu()
+{
+    char choice;
+
+    system("cls");
+    cout << "======================================" << endl;
+    cout << ">>>>>>>>>>>>>> USER MENU <<<<<<<<<<<<<" << endl;
+    cout << "======================================" << endl << endl;
+    cout << "-> 1. Add new income" << endl;
+    cout << "-> 2. Add new expense" << endl;
+    cout << "-> 3. Show current month's balance" << endl;
+    cout << "-> 4. Show previous month's balance" << endl;
+    cout << "-> 5. Show selected period balance" << endl;
+    cout << "======================================" << endl;
+    cout << "-> 6. Change password" << endl;
+    cout << "-> 7. Sign out" << endl;
+    cout << "======================================" << endl;
+    cout << "Your choice: ";
+    choice = InputMethods::readChar();
+
+    return choice;
 }

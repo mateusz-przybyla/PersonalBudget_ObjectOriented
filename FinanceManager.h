@@ -21,6 +21,7 @@ class FinanceManager
     int readNewIncomeId();
     void showTransactionData(Transaction transaction);
     void selectSortedTransactions(int startDate, int endDate, vector <Transaction> transactions);
+    double sumTransactions(int startDate, int endDate, vector <Transaction> transactions);
 
 public:
     FinanceManager(int loggedInUserId, string incomesFilename) : LOGGED_IN_USER_ID(loggedInUserId), financesFile(incomesFilename)

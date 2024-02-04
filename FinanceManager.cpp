@@ -44,7 +44,7 @@ int FinanceManager::readNewIncomeId()
 void FinanceManager::showFinanseBalance(char choice)
 {
     string startDate = "", endDate = "";
-    //double sumOfIncomes = 0, sumOfExpenses = 0;
+    double sumOfIncomes = 0;
 
     startDate = dateOperations.readStartDate(choice);
     endDate = dateOperations.readEndDate(choice);
@@ -58,9 +58,9 @@ void FinanceManager::showFinanseBalance(char choice)
         cout << "From " << startDate << " to " << endDate << " found: ";
         cout << endl << endl << "-> incomes: " << endl;
         selectSortedTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), incomes);
-        //sumOfIncomes = sumTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), incomes);
-        //cout << endl << "------------------------------" << endl;
-        //cout << "Sum of incomes: " << sumOfIncomes << " zl" << endl;
+        sumOfIncomes = sumTransactions(dateOperations.mergeDateWithoutDashes(startDate), dateOperations.mergeDateWithoutDashes(endDate), incomes);
+        cout << endl << "------------------------------" << endl;
+        cout << "Sum of incomes: " << sumOfIncomes << " zl" << endl;
         //cout << endl << endl << "-> expenses: " << endl;
         //selectSortedTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), expenses);
         //sumOfExpenses = sumTransactions(mergeDateWithoutDashes(startDate), mergeDateWithoutDashes(endDate), expenses);
@@ -98,4 +98,16 @@ void FinanceManager::showTransactionData(Transaction transaction)
     cout << dateOperations.splitDateByDashes(transaction.getDate()) << "|";
     cout << transaction.getItem() << "|";
     cout << transaction.getAmount() << "|";
+}
+
+double FinanceManager::sumTransactions(int startDate, int endDate, vector <Transaction> transactions)
+{
+    double sum = 0;
+
+    for (vector <Transaction>::iterator itr = transactions.begin(); itr != transactions.end(); itr++)
+    {
+        if (((itr -> getDate()) >= startDate) && ((itr -> getDate()) <= endDate))
+            sum += itr -> getAmount();
+    }
+    return sum;
 }

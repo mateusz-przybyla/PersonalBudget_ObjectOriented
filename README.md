@@ -38,18 +38,23 @@ Other functionalities:
 ### Screenshots
 
 - Main menu:\
+
   ![](./images/main_menu.jpg)
 
 - User menu:\
+
   ![](./images/user_menu.jpg)
 
 - Adding new income:\
+
   ![](./images/new_income.jpg)
 
 - Expense category:\
+
   ![](./images/expense_category.jpg)
 
 - e.g. Previous month's balance:\
+
   ![](./images/previous_months_balance.jpg)
 
 ## My process

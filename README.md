@@ -37,23 +37,23 @@ Other functionalities:
 
 ### Screenshots
 
-- Main menu:\
+- Main menu:
 
   ![](./images/main_menu.jpg)
 
-- User menu:\
+- User menu:
 
   ![](./images/user_menu.jpg)
 
-- Adding new income:\
+- Adding new income:
 
   ![](./images/new_income.jpg)
 
-- Expense category:\
+- Expense category:
 
   ![](./images/expense_category.jpg)
 
-- e.g. Previous month's balance:\
+- e.g. Previous month's balance:
 
   ![](./images/previous_months_balance.jpg)
 
